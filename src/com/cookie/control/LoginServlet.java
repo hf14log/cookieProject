@@ -6,10 +6,7 @@ import com.cookie.service.impl.UserServiceImpl;
 
 
 import javax.servlet.ServletException;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
 import java.io.IOException;
 
 public class LoginServlet extends HttpServlet {
@@ -46,6 +43,9 @@ public class LoginServlet extends HttpServlet {
             //请求转发，会一直请求，并且打印登录信息
 //            request.getRequestDispatcher("hello").forward(request,response);
             //使用重定向改变地址栏，改变请求,但是数据无法共享了，request和response不是一个了，无法获取用户信息了
+           //设置session获取用户名
+            HttpSession session = request.getSession();
+            session.setAttribute("name",u.getName());
             response.sendRedirect("hello");
 
         }else{
